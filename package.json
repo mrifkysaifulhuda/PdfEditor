@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "^7.12.13",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
+    "file-saver": "^2.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-dropzone": "^11.3.1",
+    "react-dropzone-uploader": "^2.11.0",
     "react-scripts": "4.0.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-api": "cd api && venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -33,6 +39,12 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:5000",
+  "babel": {
+    "presets": [
+      "babel-preset-react-app"
     ]
   }
 }
