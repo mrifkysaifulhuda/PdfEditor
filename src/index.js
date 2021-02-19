@@ -19,7 +19,6 @@ const MyUploader = () => {
   	if (count == 0){
   		id = uuidv1();
   		setCount(id);
-  		alert(id)
   	}else{
   		id = count;
   	}
