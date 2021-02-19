@@ -53,12 +53,7 @@ def upload():
 @app.route('/joinPdf', methods=['GET', 'POST'])
 def JoinPdf():
 	session_id = request.form['session_id']
-	print(session_id)
-
 	paths = glob.glob(app.config['UPLOAD_FOLDER']+session_id+'/*'+session_id+'*.pdf')
-
-	print(paths)
-
 	merger(app.config['UPLOAD_FOLDER']+session_id+'/'+session_id+'.pdf',paths)
 
 		
@@ -69,14 +64,23 @@ def JoinPdf():
 @app.route('/DelSession', methods=['GET', 'POST'])
 def DeleteSession():
 	session_id = request.form['session_id']
-	print(session_id)
-
-	dir_path = '/tmp/img'
-
 	try:
 	    shutil.rmtree(app.config['UPLOAD_FOLDER']+session_id+'/')
 	except OSError as e:
-	    print("Error: %s : %s" % (dir_path, e.strerror))
+	    print("Error: %s : %s" % (app.config['UPLOAD_FOLDER']+session_id+'/', e.strerror))
+
+	return {'status':'ok'}
+
+@app.route('/DelSingleFile', methods=['GET', 'POST'])
+def DelSingleFile():
+	session_id = request.form['session_id']
+	filename = session_id + secure_filename(request.form['file_name'])
+
+	try:
+	    os.remove(os.path.join(app.config['UPLOAD_FOLDER']+session_id, filename))
+	except OSError as e:
+	    print("Error: %s : %s" % (app.config['UPLOAD_FOLDER']+session_id+'/'+file_name, e.strerror))
+	    return {'status':'error'}
 
 	return {'status':'ok'}
 

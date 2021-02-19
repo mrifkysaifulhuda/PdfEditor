@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/api/upload_file
 
 # testing
 /coverage
