@@ -12,11 +12,3 @@ code {
     monospace;
 }
 
-.dzu-submitButton  {
-  font-size: 0px;
-}
-
-.dzu-submitButton:after{
-	content: 'Join PDF' !important;
-	font-size: 14px;
-}
