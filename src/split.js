@@ -13,6 +13,7 @@ function SubmitForm(props){
 
   const [extractAll, setAll] = useState(false);
   const [range, setRange] = useState("");
+  const [submit, setSubmit] = useState(false);
 
   const extractAllOnChange = (event) =>{
     console.log(event.target.checked);
@@ -27,6 +28,7 @@ function SubmitForm(props){
 
   const handleSubmit = () =>{
     const body = new FormData();
+    alert(submit);
 
     body.append('session_id', props.count);
     body.append('extract_all', extractAll);
@@ -45,10 +47,13 @@ function SubmitForm(props){
 
         // Fetch another API
         return fetch('/DelSession',{method:"POST",body:body_2 });
-
-        props.count = 0
+        
+        
+       
 
       });
+
+      setSubmit(true);
   }
 
   if(props.count != 0){
@@ -61,7 +66,7 @@ function SubmitForm(props){
         <Form.Label>Split Range</Form.Label>
         <Form.Control type="text" placeholder="Range" onChange={rangeOnChange} />
       </Form.Group>
-      <Button onClick={handleSubmit} variant="primary" >
+      <Button disabled={submit} onClick={handleSubmit} variant="primary" >
         Split
       </Button>
     </Form>
@@ -72,7 +77,6 @@ function SubmitForm(props){
   }
   
 }
-
 
 function SplitPDF (props) {
   // specify upload params and url for your files
